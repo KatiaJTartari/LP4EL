@@ -1,0 +1,6 @@
+C:\Users\Katia\source\repos\Aula1\Exercicio5\bin\Debug\Exercicio5.exe.config
+C:\Users\Katia\source\repos\Aula1\Exercicio5\bin\Debug\Exercicio5.exe
+C:\Users\Katia\source\repos\Aula1\Exercicio5\bin\Debug\Exercicio5.pdb
+C:\Users\Katia\source\repos\Aula1\Exercicio5\obj\Debug\Exercicio5.csproj.CoreCompileInputs.cache
+C:\Users\Katia\source\repos\Aula1\Exercicio5\obj\Debug\Exercicio5.exe
+C:\Users\Katia\source\repos\Aula1\Exercicio5\obj\Debug\Exercicio5.pdb
