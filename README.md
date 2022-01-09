@@ -1,2 +1,2 @@
-# LP4EL
-LP2A4 - Linguagem de Programação II Repositório com os exemplos e os exercícios em linguagem Java da disciplina de Linguagem de Programação II. Também foi usado o banco de dados PostgreSQL e o servidor Apache Tomcat para execução da aplicação.
+# LP4EL - Linguagem de Programação 4 Eletiva
+Repositório com os exercícios em linguagem C# da disciplina de Linguagem de Programação 4 Eletiva. Foi usado o banco de dados MySQL no qual também poderia ser usado o banco de dados SQL Server.
