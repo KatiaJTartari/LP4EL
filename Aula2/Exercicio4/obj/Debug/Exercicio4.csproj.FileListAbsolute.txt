@@ -1,0 +1,7 @@
+C:\Users\Katia\source\repos\Aula2\Exercicio4\bin\Debug\Exercicio4.exe.config
+C:\Users\Katia\source\repos\Aula2\Exercicio4\bin\Debug\Exercicio4.exe
+C:\Users\Katia\source\repos\Aula2\Exercicio4\bin\Debug\Exercicio4.pdb
+C:\Users\Katia\source\repos\Aula2\Exercicio4\obj\Debug\Exercicio4.csproj.AssemblyReference.cache
+C:\Users\Katia\source\repos\Aula2\Exercicio4\obj\Debug\Exercicio4.csproj.CoreCompileInputs.cache
+C:\Users\Katia\source\repos\Aula2\Exercicio4\obj\Debug\Exercicio4.exe
+C:\Users\Katia\source\repos\Aula2\Exercicio4\obj\Debug\Exercicio4.pdb

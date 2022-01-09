@@ -1,0 +1,7 @@
+C:\Users\Katia\source\repos\Aula2\Exerc1\obj\Debug\Exerc1.csproj.AssemblyReference.cache
+C:\Users\Katia\source\repos\Aula2\Exerc1\obj\Debug\Exerc1.csproj.CoreCompileInputs.cache
+C:\Users\Katia\source\repos\Aula2\Exerc1\bin\Debug\Exerc1.exe.config
+C:\Users\Katia\source\repos\Aula2\Exerc1\bin\Debug\Exerc1.exe
+C:\Users\Katia\source\repos\Aula2\Exerc1\bin\Debug\Exerc1.pdb
+C:\Users\Katia\source\repos\Aula2\Exerc1\obj\Debug\Exerc1.exe
+C:\Users\Katia\source\repos\Aula2\Exerc1\obj\Debug\Exerc1.pdb
