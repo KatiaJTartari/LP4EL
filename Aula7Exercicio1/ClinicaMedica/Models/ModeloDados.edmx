@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="ModeloDados.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="ModeloDadosTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ModeloDados" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ModeloDadosContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Medico" EntityType="ModeloDados.Medico" />
+          <EntitySet Name="Paciente" EntityType="ModeloDados.Paciente" />
+          <EntitySet Name="Especialidade" EntityType="ModeloDados.Especialidade" />
+          <EntitySet Name="Consulta" EntityType="ModeloDados.Consulta" />
+          <AssociationSet Name="MedicoEspecialidade" Association="ModeloDados.MedicoEspecialidade">
+            <End Role="Medico" EntitySet="Medico" />
+            <End Role="Especialidade" EntitySet="Especialidade" />
+          </AssociationSet>
+          <AssociationSet Name="MedicoConsulta" Association="ModeloDados.MedicoConsulta">
+            <End Role="Medico" EntitySet="Medico" />
+            <End Role="Consulta" EntitySet="Consulta" />
+          </AssociationSet>
+          <AssociationSet Name="PacienteConsulta" Association="ModeloDados.PacienteConsulta">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Consulta" EntitySet="Consulta" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Medico">
+          <Key>
+            <PropertyRef Name="IdMedico" />
+          </Key>
+          <Property Name="IdMedico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" />
+          <Property Name="CRM" Type="String" Nullable="false" />
+          <Property Name="Endereco" Type="String" Nullable="false" />
+          <Property Name="Telefone" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <NavigationProperty Name="Especialidade" Relationship="ModeloDados.MedicoEspecialidade" FromRole="Medico" ToRole="Especialidade" />
+          <Property Name="IdEspecialidade" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Consulta" Relationship="ModeloDados.MedicoConsulta" FromRole="Medico" ToRole="Consulta" />
+        </EntityType>
+        <EntityType Name="Paciente">
+          <Key>
+            <PropertyRef Name="IdPaciente" />
+          </Key>
+          <Property Name="IdPaciente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" />
+          <Property Name="CPF" Type="String" Nullable="false" />
+          <Property Name="Telefone" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="Deficiente" Type="Boolean" Nullable="false" />
+          <Property Name="DataNascimento" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Consulta" Relationship="ModeloDados.PacienteConsulta" FromRole="Paciente" ToRole="Consulta" />
+        </EntityType>
+        <EntityType Name="Especialidade">
+          <Key>
+            <PropertyRef Name="IdEspecialidade" />
+          </Key>
+          <Property Name="IdEspecialidade" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="String" Nullable="false" />
+          <NavigationProperty Name="Medico" Relationship="ModeloDados.MedicoEspecialidade" FromRole="Especialidade" ToRole="Medico" />
+        </EntityType>
+        <EntityType Name="Consulta" >
+          <Key>
+            <PropertyRef Name="IdMedico" />
+            <PropertyRef Name="IdPaciente" />
+          </Key>
+          <Property Name="Dia" Type="DateTime" Nullable="false" />
+          <Property Name="Hora" Type="Time" Nullable="false" />
+          <NavigationProperty Name="Medico" Relationship="ModeloDados.MedicoConsulta" FromRole="Consulta" ToRole="Medico" />
+          <Property Name="IdMedico" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Paciente" Relationship="ModeloDados.PacienteConsulta" FromRole="Consulta" ToRole="Paciente" />
+          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="MedicoEspecialidade">
+          <End Type="ModeloDados.Medico" Role="Medico" Multiplicity="*" />
+          <End Type="ModeloDados.Especialidade" Role="Especialidade" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Especialidade">
+              <PropertyRef Name="IdEspecialidade" />
+            </Principal>
+            <Dependent Role="Medico">
+              <PropertyRef Name="IdEspecialidade" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MedicoConsulta">
+          <End Type="ModeloDados.Medico" Role="Medico" Multiplicity="1" />
+          <End Type="ModeloDados.Consulta" Role="Consulta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medico">
+              <PropertyRef Name="IdMedico" />
+            </Principal>
+            <Dependent Role="Consulta">
+              <PropertyRef Name="IdMedico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PacienteConsulta">
+          <End Type="ModeloDados.Paciente" Role="Paciente" Multiplicity="1" />
+          <End Type="ModeloDados.Consulta" Role="Consulta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="Consulta">
+              <PropertyRef Name="IdPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="ModeloDados" />
+        <Alias Key="Target" Value="ModeloDados.Store" />
+        <EntityContainerMapping CdmEntityContainer="ModeloDadosContainer" StorageEntityContainer="ModeloDadosTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="DDLGenerationTemplate" Value="$(VSEFTools)\DBGen\SSDLToMySQL8.tt" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
