@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+@Html.ExibeImagens()
+
+@Html.ExibeFrasePublicitaria()
+
+<h3>Encontre seu estabelecimento de hospedagem aqui!</h3>
+
+<div class="row">
+    <form class="form-inline">
+        <div class="form-group">
+            <label class="pl-3">Cidade</label>
+            <div class="pl-2 pr-4">@Html.DropDownList("Cidade")</div>
+        </div>
+        <div class="form-group">
+            <label>Categoria</label>
+            <div class="pl-2 pr-4">@Html.DropDownList("Categoria")</div>
+        </div>
+        <button type="button" id="pesquisar" class="btn btn-success">Pesquisar</button>
+        <br /><br />
+    </form>
+</div>
+<div class="row-cols-1">
+    <div id="resultados"></div>
+</div>
+
+@section Scripts{
+    <script>
+        $(function () {
+            $("#pesquisar").on("click", function () { //Captura clique no botão "pesquisar".
+                // Obtém os dados dos DropDownLists Cidade e Categoria selecionados e os atribui a uma variável.
+                var pesquisa = { IdCidade: $("#Cidade").val(), IdCategoria: $("#Categoria").val() };
+
+                // Exibe os resultados da pesquisa passando como parâmetros o controller, a action,
+                // a variável contendo os dados de entrada e a função que recebe o retorno action.
+                $.getJSON("/home/pesquisar", pesquisa, function (data) {
+
+                    var resultados = $("#resultados"); // Obtém os resultados apresentados no div.
+                    resultados.empty(); // Limpa os resultados apresentados anteriormente no div.
+
+                    if (data.length == 0) { // Se nenhum registro for retornado.
+                        resultados.append('<div class="alert alert-warning ">Não encontramos nenhum estabelecimento de hospedagem...</div>');
+                        return false; // Interrompe a execução do script.
+                    }
+                    // Obtém os dados de cada registro retornado e os adiciona na variável "resultados".
+                    for (var i = 0; i < data.length; i++) {
+                        resultados.append('<div class="alert alert-success">' +
+                            '<h4><b>' + data[i].NomeComercial + '</b></h4>' +
+                            '<p class="m-0"><b>Razão Social: </b>' + data[i].RazaoSocial + '</p>' +
+                            '<p class="m-0"><b>CNPJ: </b>' + data[i].CNPJ + '</p>' +
+                            '<p class="m-0"><b>Endereço: </b>' + data[i].Endereco + '</p>' +
+                            '<p class="m-0"><b>Telefone: </b>' + data[i].Telefone + '</p>' +
+                            '<p class="m-0"><b>Site: </b>' + data[i].Site + '</p>' +
+                            '</div>');
+                    }
+                }); // Final da função que recebe o retorno da action.
+            });  // Final da função disparada pelo clique no botão "pesquisar".
+        }); // Final da função principal.
+    </script>
+    }

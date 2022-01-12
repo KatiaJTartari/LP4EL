@@ -1,0 +1,26 @@
+﻿@model IEnumerable<HospedagemOnline.Models.Estabelecimento>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Novo Estabelecimento", "Inserir")
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Alterar", "Alterar", new { id=item.IdEstabelecimento }) |
+            @Html.ActionLink("Excluir", "Excluir", new { id=item.IdEstabelecimento })
+        </td>
+    </tr>
+}
+
+</table>
